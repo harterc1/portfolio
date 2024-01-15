@@ -1,0 +1,34 @@
+{
+  "projects": [
+    {
+      "title": "Stories App",
+      "slug": "stories-app",
+      "src": "/avatar.jpg",
+      "tags": ["iOS", "Swift", "SwiftUI", "AVFoundation", "Apollo GraphQL"],
+      "bulletPoints": [
+        "Bullet point A",
+        "Bullet point B"
+      ]
+    },
+    {
+      "title": "Backstage CMS",
+      "slug": "backstage-cms",
+      "src": "/avatar.jpg",
+      "tags": ["Next.js", "Typescript", "Apollo GraphQL", "React Final Form"],
+      "bulletPoints": [
+        "Bullet point A",
+        "Bullet point B"
+      ]
+    },
+    {
+      "title": "Proximity",
+      "slug": "proximity",
+      "src": "/avatar.jpg",
+      "tags": ["React Native", "Javascript", "Apollo GraphQL", "Python", "Django", "PostgreSQL", "PostGis", "Ariadne"],
+      "bulletPoints": [
+        "Bullet point A",
+        "Bullet point B"
+      ]
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import { useParams, useRouter } from "next/navigation"
 
 import data from "@/data.json"
 import Image from "next/image"
+import CodeSamples from "@/components/codeSamples"
 
 const Page = () => {
   const router = useRouter()
@@ -68,7 +69,15 @@ const Page = () => {
           <h3 className="text-xl font-bold pt-2">The Challenge</h3>
           <p>Early in the project we chose <a href="https://final-form.org/react" target="_blank">React Final Form</a> to handle our form state management, primarily for it's <a href="https://redux.js.org/" target="_blank">Redux</a>-inspired performance tuning capability. While React Final Form provides some ways to implement auto-save (i.e. <a href="https://final-form.org/docs/react-final-form/types/FormProps#keepdirtyonreinitialize" target="_blank"><code>keepDirtyOnReinitialize</code></a>), it doesn't handle re-hydrating the form with data from the server while also not interrupting the user.</p>
           <p>So, I created <code>VMForm</code>; a wrapper around React Final Form's <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> component and implemented a custom <code>onSave</code> prop that allows the developer to re-hydrate the form after submission completes.  <code>VMForm</code> also keeps track of any fields that are changed (or "dirtied") while the form submission is in progress so that it knows which fields to not overwrite form. <code>VMForm</code> is also designed to be a drop-in replacement for <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> as all capability and hooks native to React Final Form still work.</p>
-        
+
+          <CodeSamples
+            hrefs={[
+              'https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.tsx',
+              'https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.context.tsx',
+              'https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/useVMForm.ts',
+            ]}
+          />
+
           <h3 className="text-xl font-bold pt-2">Data Flow / Lifecycle</h3>
           <p>To further illustrate the impact this auto-save design has on how data flows through the app, observe the following sequence diagrams that depict the data flow design proposed by React Final Form vs <code>VMForm</code>.</p>
           <h4 className="text-lg font-bold pt-2">React Final Form (Before)</h4>
@@ -81,11 +90,15 @@ const Page = () => {
           <h2 className="text-3xl font-bold">Strict Types For Form Data</h2>
           <p>Any data-heavy application should use <a href="https://www.typescriptlang.org/tsconfig#strict" target="_blank">strict</a> typing and a CMS is a perfect example of this.  While the types directly conforming to a GraphQL API Schema can be automatically generated via tools like <a href="https://the-guild.dev/graphql/codegen" target="_blank">CodeGen</a>, the data returned from an API are often <b>not</b> in the most convenient structure for UI components, form validation, etc.</p>
           <p>As Backstage CMS is a <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a> application, I implemented patterns for the team to use to restructure this data for ease of use within the UI while preventing hardcoded strings from being sprinkled throughout the codebase.</p>
+          <p><i>*Code samples not shown as to not expose sensitive data structures</i></p>
         </section>
 
         <section className="mt-4">
           <h2 className="text-3xl font-bold">Dirty Warning Modal</h2>
           <p>Backstage CMS provides mechanisms to prevent users from losing their work.  One in particular is the "Dirty Warning Modal".</p>
+          
+          <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/DirtyWarningModal.tsx']} />
+
           <p>The tricky part is handling all logic for cancelling native browser navigation and <a href="https://nextjs.org/docs/pages/building-your-application/rendering/client-side-rendering" target="_blank">Next.js client-side rendering</a> while keeping the browser and the <a href="https://nextjs.org/docs/pages/api-reference/functions/use-router" target="_blank">Next.js router</a> in sync.  The different types of navigation also means that two types of modals need to be used to prompt the user depending on how they leave the page.</p>
           <div className="flex flex-col items-center sm:flex-row py-2 gap-6">
             <Image className="sm:w-1/2" src="/backstage-cms/dirty-modal-custom.png" alt="Backstage CMS custom dirty warning modal" height={212} width={320} />

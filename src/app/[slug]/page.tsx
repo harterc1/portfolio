@@ -87,9 +87,9 @@ const Page = () => {
           <h2 className="text-3xl font-bold">Dirty Warning Modal</h2>
           <p>Backstage CMS provides mechanisms to prevent users from losing their work.  One in particular is the "Dirty Warning Modal".</p>
           <p>The tricky part is handling all logic for cancelling native browser navigation and <a href="https://nextjs.org/docs/pages/building-your-application/rendering/client-side-rendering" target="_blank">Next.js client-side rendering</a> while keeping the browser and the <a href="https://nextjs.org/docs/pages/api-reference/functions/use-router" target="_blank">Next.js router</a> in sync.  The different types of navigation also means that two types of modals need to be used to prompt the user depending on how they leave the page.</p>
-          <div className="flex py-2 gap-6">
-            <Image className="w-1/2" src="/backstage-cms/dirty-modal-custom.png" alt="Backstage CMS custom dirty warning modal" height={212} width={320} />
-            <Image className="w-1/2" src="/backstage-cms/dirty-modal-native.png" alt="Backstage CMS native dirty warning modal" height={212} width={320} />
+          <div className="flex flex-col items-center sm:flex-row py-2 gap-6">
+            <Image className="sm:w-1/2" src="/backstage-cms/dirty-modal-custom.png" alt="Backstage CMS custom dirty warning modal" height={212} width={320} />
+            <Image className="sm:w-1/2" src="/backstage-cms/dirty-modal-native.png" alt="Backstage CMS native dirty warning modal" height={212} width={320} />
           </div>
           <p>The best part is that the component takes no props and as long as <code>&lt;DirtyWarningModal/&gt;</code> exists within a React Final Form <code>Form</code> component, the user will always be prompted if they attempt to leave the page while the form is dirty.</p>
         </section>

@@ -6,7 +6,7 @@ import Link from "next/link"
 
 const Nav = () => (
   <nav className="bg-neutral-900">
-    <div className="flex px-8 sm:px-16 m-auto max-w-screen-lg items-center">
+    <div className="flex px-8 sm:px-16 m-auto max-w-screen-md items-center">
       <div className="flex-1">
         <Link href="/" className="block relative w-8 h-8 bg-gray-600 rounded-full overflow-hidden">
           <Image src="/avatar.jpg" alt="Chad Harter" fill />

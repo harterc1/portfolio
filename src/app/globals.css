@@ -18,6 +18,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+main {
+  @apply m-auto p-8 sm:px-16 max-w-screen-md min-h-screen
+}
+
 a {
   @apply hover:opacity-80 active:opacity-60  
 }
@@ -26,9 +30,9 @@ article a {
   @apply text-sky-400 font-medium
 }
 
-p {
+/* p {
   @apply py-2
-}
+} */
 
 code {
   @apply bg-gray-200 text-gray-800 px-1 py-0.5 rounded-md

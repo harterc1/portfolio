@@ -21,8 +21,6 @@ export default function Home() {
             <Image src="/avatar.jpg" alt="Chad Harter" fill />
           </div>
         </div>
-
-        
       </header>
 
       {data.projects.map(project => (

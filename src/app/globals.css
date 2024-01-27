@@ -5,7 +5,7 @@
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 12, 12, 12;
-  --background-end-rgb: 23, 23, 23;
+  --background-end-rgb: 33, 33, 33;
 }
 
 body {
@@ -23,17 +23,43 @@ main {
 }
 
 a {
-  @apply hover:opacity-80 active:opacity-60  
+  @apply hover:opacity-80 active:opacity-60
 }
 
-article a {
-  @apply text-sky-400 font-medium
+p {
+  @apply my-4
 }
 
-/* p {
-  @apply py-2
-} */
+ul {
+  @apply list-disc
+}
 
-code {
-  @apply bg-gray-200 text-gray-800 px-1 py-0.5 rounded-md
+article {
+  a {
+    @apply text-sky-400 font-medium
+  }
+
+  h1, h2, h3, h4 {
+    @apply my-2
+  }
+
+  h1 {
+    @apply text-5xl uppercase font-extrabold
+  }
+
+  h2 {
+    @apply text-3xl font-bold
+  }
+
+  h3 {
+    @apply text-2xl font-bold
+  }
+
+  h4 {
+    @apply text-lg font-bold
+  }
+
+  section {
+    @apply my-10
+  }
 }

@@ -56,19 +56,19 @@ const Page = () => {
 
         <h3>The Challenge</h3>
         <p>Early in the project we chose <a href="https://final-form.org/react" target="_blank">React Final Form</a> to handle our form state management, primarily for it's <a href="https://redux.js.org/" target="_blank">Redux</a>-inspired performance tuning capability. While React Final Form provides some ways to implement auto-save (i.e. <a href="https://final-form.org/docs/react-final-form/types/FormProps#keepdirtyonreinitialize" target="_blank"><code>keepDirtyOnReinitialize</code></a>), it doesn't handle re-hydrating the form with data from the server while also not interrupting the user.</p>
-        <p>So, I created <a href="https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a>; a wrapper around React Final Form's <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> component and implemented a custom <a href="https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.types.ts#L34" target="_blank"><code>onSave</code></a> prop that allows the developer to re-hydrate the form after submission completes.  <a href="https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a> also keeps track of any fields that are changed (or "dirtied") while the form submission is in progress so that it knows which fields to not overwrite. <a href="https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a> is also designed to be a drop-in replacement for <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> as all capability and hooks native to React Final Form still work.</p>
+        <p>So, I created <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a>; a wrapper around React Final Form's <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> component and implemented a custom <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.types.ts#L34" target="_blank"><code>onSave</code></a> prop that allows the developer to re-hydrate the form after submission completes.  <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a> also keeps track of any fields that are changed (or "dirtied") while the form submission is in progress so that it knows which fields to not overwrite. <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a> is also designed to be a drop-in replacement for <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> as all capability and hooks native to React Final Form still work.</p>
 
         <CodeSamples
           hrefs={[
-            'https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.tsx',
-            'https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.types.ts',
-            'https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.context.tsx',
-            'https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/useVMForm.ts',
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx',
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.types.ts',
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.context.tsx',
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/useVMForm.ts',
           ]}
         />
 
         <h3>Data Flow / Lifecycle</h3>
-        <p>To further illustrate the impact this auto-save design has on how data flows through the app, observe the following sequence diagrams that depict the data flow design proposed by React Final Form vs <a href="https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a>.</p>
+        <p>To further illustrate the impact this auto-save design has on how data flows through the app, observe the following sequence diagrams that depict the data flow design proposed by React Final Form vs <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a>.</p>
         <h4>React Final Form (Before)</h4>
         <Image className="py-2" src="/backstage-cms/data-flow-before.png" alt="Backstage CMS data flow before" width={640} height={461} />
         <h4>VMForm (After)</h4>
@@ -85,14 +85,14 @@ const Page = () => {
         <h2>Dirty Warning Modal</h2>
         <p>Backstage CMS provides mechanisms to prevent users from losing their work.  One in particular is the "Dirty Warning Modal".</p>
         
-        <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/DirtyWarningModal.tsx']} />
+        <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/DirtyWarningModal.tsx']} />
 
         <p>The tricky part was cancelling native browser navigation and <a href="https://nextjs.org/docs/pages/building-your-application/rendering/client-side-rendering" target="_blank">Next.js client-side rendering</a> while keeping the browser and the <a href="https://nextjs.org/docs/pages/api-reference/functions/use-router" target="_blank">Next.js router</a> in sync.  The different types of navigation also means that two types of modals need to be used to prompt the user depending on how they leave the page.</p>
         <div className="flex flex-col items-center sm:flex-row py-2 gap-6">
           <Image className="sm:w-1/2" src="/backstage-cms/dirty-modal-custom.png" alt="Backstage CMS custom dirty warning modal" height={212} width={320} />
           <Image className="sm:w-1/2" src="/backstage-cms/dirty-modal-native.png" alt="Backstage CMS native dirty warning modal" height={212} width={320} />
         </div>
-        <p>As long as <a href="https://github.com/harterc1/portfolio/blob/master/public/backstage-cms/DirtyWarningModal.tsx" target="_blank"><code>DirtyWarningModal</code></a> exists as a child of a React Final Form <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> component, the user will always be prompted if they attempt to leave the page while the form is dirty.</p>
+        <p>As long as <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/DirtyWarningModal.tsx" target="_blank"><code>DirtyWarningModal</code></a> exists as a child of a React Final Form <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> component, the user will always be prompted if they attempt to leave the page while the form is dirty.</p>
       </section>
     </ProjectContainer>
   )

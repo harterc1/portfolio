@@ -64,18 +64,18 @@ const Page = () => {
             <p>The camera functions how most users would expect.</p>
             <p>It uses <a href="https://developer.apple.com/documentation/swiftui/uiviewrepresentable" target="_blank"><code>UIViewRepresentable</code></a> to construct a custom SwiftUI view that ties an <a href="https://developer.apple.com/documentation/avfoundation/avcapturesession" target="_blank"><code>AVCaptureSession</code></a> to an <a href="https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer" target="_blank"><code>AVCaptureVideoPreviewLayer</code></a> to present the camera feed.</p>
             
-            <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/public/stories-app/CameraPreviewView.swift']} />
+            <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/CameraPreviewView.swift']} />
             
             <p>The majority of the controller logic for constructing the <a href="https://developer.apple.com/documentation/avfoundation/avcapturesession" target="_blank"><code>AVCaptureSession</code></a> is based off of Apple's sample <a href="https://developer.apple.com/documentation/avfoundation/capture_setup/avcam_building_a_camera_app" target="_blank">AVCam</a>.</p>
             <p>The camera also allows multiple gesture types including tapping to adjust focus as well as simultaneously supporting two methods for adjusting zoom level. This is implemented using custom <a href="https://developer.apple.com/documentation/swiftui/viewmodifier" target="_blank">view modifiers</a> and a custom focus indicator view.</p>
             
             <CodeSamples
               hrefs={[
-                'https://github.com/harterc1/portfolio/blob/master/public/stories-app/View+onTapGestureWithLocation.swift',
-                'https://github.com/harterc1/portfolio/blob/master/public/stories-app/View+ZoomDragGestureModifier.swift',
-                'https://github.com/harterc1/portfolio/blob/master/public/stories-app/View+ZoomPinchGestureModifier.swift',
-                'https://github.com/harterc1/portfolio/blob/master/public/stories-app/FocusIndicatorView.swift',
-                'https://github.com/harterc1/portfolio/blob/master/public/stories-app/CameraExample.swift',
+                'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/View+onTapGestureWithLocation.swift',
+                'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/View+ZoomDragGestureModifier.swift',
+                'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/View+ZoomPinchGestureModifier.swift',
+                'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FocusIndicatorView.swift',
+                'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/CameraExample.swift',
               ]}
             />
           </div>
@@ -104,15 +104,15 @@ const Page = () => {
       <section>
         <h2>Custom Layout Manager</h2>
         <p>The editing capability provided by the template system means that a user can impact the size and position of the elements within the template. For example, adjustments to text, font family and font size all effect the bounding box of the <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> that is representing that text element.  Futhermore, this has a cascading effect on the expected positions of neighboring elements.</p>
-        <p>Since <a href="https://developer.apple.com/documentation/quartzcore/calayer/1410749-layoutmanager" target="_blank"><code>CALayer.layoutManager</code></a> doesn't exist on iOS, I extended <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> to create <a href="https://github.com/harterc1/portfolio/blob/master/public/stories-app/LayoutLayer.swift" target="_blank"><code>LayoutLayer</code></a>; a base class that any template element can inherit from to automatically support alignment, padding, and auto-resizing.</p>
-        <p>As the user interacts with the app, <a href="https://developer.apple.com/documentation/combine" target="_blank">Combine</a> is used to observe changes to the underlying template data and adjust the properties of <a href="https://github.com/harterc1/portfolio/blob/master/public/stories-app/LayoutLayer.swift" target="_blank"><code>LayoutLayer</code></a> to provide real-time visual updates.</p>
+        <p>Since <a href="https://developer.apple.com/documentation/quartzcore/calayer/1410749-layoutmanager" target="_blank"><code>CALayer.layoutManager</code></a> doesn't exist on iOS, I extended <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> to create <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/LayoutLayer.swift" target="_blank"><code>LayoutLayer</code></a>; a base class that any template element can inherit from to automatically support alignment, padding, and auto-resizing.</p>
+        <p>As the user interacts with the app, <a href="https://developer.apple.com/documentation/combine" target="_blank">Combine</a> is used to observe changes to the underlying template data and adjust the properties of <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/LayoutLayer.swift" target="_blank"><code>LayoutLayer</code></a> to provide real-time visual updates.</p>
         
         <CodeSamples
           hrefs={[
-            'https://github.com/harterc1/portfolio/blob/master/public/stories-app/LayoutLayer.swift',
-            'https://github.com/harterc1/portfolio/blob/master/public/stories-app/FilterEngineNodeLayer.swift',
-            'https://github.com/harterc1/portfolio/blob/master/public/stories-app/FilterEngine+NodeLayer.swift',
-            'https://github.com/harterc1/portfolio/blob/master/public/stories-app/FilterEngine+BlockNodeLayer.swift',
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/LayoutLayer.swift',
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngineNodeLayer.swift',
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayer.swift',
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+BlockNodeLayer.swift',
           ]}
         />
       </section>
@@ -120,18 +120,18 @@ const Page = () => {
       <section>
         <h2 id="template-rendering">Template Rendering</h2>
         <p>There are benefits to choosing <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> to display templates. This enables the app to use the same <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> structure across all applications within the app.</p>
-        <p>In the following examples, the blue <a href="https://github.com/harterc1/portfolio/blob/master/public/stories-app/FilterEngine+NodeLayer.swift" target="_blank"><code>NodeLayer</code></a> object represents the <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> structure for any template.  This is to highlight code re-use.</p>
+        <p>In the following examples, the blue <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayer.swift" target="_blank"><code>NodeLayer</code></a> object represents the <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> structure for any template.  This is to highlight code re-use.</p>
 
         <h3>Displaying a template in a view</h3>
         <p>The root <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> can be simply added as a sublayer to any <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a>. Additionally, when a user taps the <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a>, <a href="https://developer.apple.com/documentation/quartzcore/calayer/1410972-hittest" target="_blank"><code>CALayer.hitTest</code></a> is used to determine which <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> was tapped. This was useful as some template elements are expected to be interactable.</p>
         
         <Image className="w-1/2" src="/stories-app/node-layer-view.png" alt="Diagram for displaying a template in a view" width={976} height={684} />
         
-        <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/public/stories-app/FilterEngine+NodeLayerView.swift']} />
+        <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayerView.swift']} />
         
         <h3>Rendering a template during an export</h3>
         <p>When the user is finished editing, the app uses an <a href="https://developer.apple.com/documentation/avfoundation/avassetexportsession" target="_blank"><code>AVAssetExportSession</code></a> to export the final product.</p>
-        <p>The export session has a fairly complicated configuration, but ultimately it allows you to overlay any number of <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a>s over your video using <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a>. It even syncs any <a href="https://developer.apple.com/documentation/quartzcore/caanimation" target="_blank"><code>CAAnimation</code></a> animations that are tied in so that they play along with your video(s).  <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a> is not shown in the diagram below, but it is what ties the <a href="https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition" target="_blank"><code>AVMutableVideoComposition</code></a> to the <a href="https://github.com/harterc1/portfolio/blob/master/public/stories-app/FilterEngine+NodeLayer.swift" target="_blank"><code>NodeLayer</code></a>.</p>
+        <p>The export session has a fairly complicated configuration, but ultimately it allows you to overlay any number of <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a>s over your video using <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a>. It even syncs any <a href="https://developer.apple.com/documentation/quartzcore/caanimation" target="_blank"><code>CAAnimation</code></a> animations that are tied in so that they play along with your video(s).  <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a> is not shown in the diagram below, but it is what ties the <a href="https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition" target="_blank"><code>AVMutableVideoComposition</code></a> to the <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayer.swift" target="_blank"><code>NodeLayer</code></a>.</p>
         
         <Image className="w-1/2" src="/stories-app/node-layer-export.png" alt="Diagram for displaying a template in a view" width={1004} height={1012} />
         

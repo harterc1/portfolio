@@ -4,7 +4,7 @@ import ProjectCard from '@/components/ProjectCard'
 
 export default function Home() {
   return (
-    <main>
+    <>
       <header className="pb-4">
         <div className="flex gap-6">
           <div className="flex-1 flex-shrink">
@@ -31,6 +31,6 @@ export default function Home() {
           />
         ))}
       </div>
-    </main>
+    </>
   )
 }

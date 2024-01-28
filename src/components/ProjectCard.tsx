@@ -18,10 +18,10 @@ const ProjectCard = ({
       {src && (
         <Image className="rounded-md" src={src} alt={title} width={1067} height={720} />
       )}
-      <h2 className="text-3xl">
+      <h2 className="text-3xl sm:text-2xl">
         { title }
       </h2>
-      <div className="flex my-2 gap-1 flex-wrap">
+      <div className="flex my-2 gap-1.5 flex-wrap">
         {tags.map(tag => (
           <Tag key={tag}>{ tag }</Tag>
         ))}

@@ -10,7 +10,7 @@
       "title": "Backstage CMS",
       "slug": "backstage-cms",
       "src": "/backstage-cms/hero-2.png",
-      "tags": ["Next", "Typescript", "React", "Apollo GraphQL", "React Final Form"]
+      "tags": ["Next.js", "Typescript", "React", "Apollo GraphQL", "React Final Form"]
     },
     {
       "title": "Proximity",

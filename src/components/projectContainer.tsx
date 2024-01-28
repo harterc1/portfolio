@@ -12,11 +12,11 @@ const ProjectContainer = ({ children }: { children: React.ReactNode }) => {
   // }
 
   return (
-    <main>
+    // <main>
       <article>
         { children }
       </article>
-    </main>
+    // </main>
   )
 }
 

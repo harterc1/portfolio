@@ -5,14 +5,16 @@ import Link from "next/link"
 import Avatar from "./Avatar"
 
 const Nav = () => (
-  <nav className="bg-neutral-900">
+  <nav className="fixed top-0 left-0 right-0 bg-neutral-900">
     <div className="flex px-8 sm:px-16 m-auto max-w-screen-md items-center">
       <div className="flex-1">
         <Link href="/" className="block relative w-8 h-8 bg-gray-600 rounded-full overflow-hidden">
           <Avatar />
         </Link>
       </div>
-      <Link href="http://www.github.com/harterc1" target="_blank" className="p-1 my-1 inline-block">
+      
+      <Link href="http://www.github.com/harterc1/portfolio" target="_blank" className="p-1 my-1 inline-block">
+        <span className="font-mono text-[0.65rem] uppercase mr-2">View Source</span>
         <Github size="2rem" title="Chad Harter's Github"/>
       </Link>
       <Link href="https://www.linkedin.com/in/chad-harter/" target="_blank" className="p-1 my-1 inline-block">

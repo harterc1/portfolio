@@ -3,32 +3,19 @@
     {
       "title": "Stories App",
       "slug": "stories-app",
-      "src": "/avatar.jpg",
-      "tags": ["iOS", "Swift", "SwiftUI", "AVFoundation", "Apollo GraphQL"],
-      "bulletPoints": [
-        "Bullet point A",
-        "Bullet point B"
-      ]
+      "src": "/stories-app/card.png",
+      "tags": ["iOS", "Swift", "SwiftUI", "AVFoundation", "Core Animation", "Apollo GraphQL"]
     },
     {
       "title": "Backstage CMS",
       "slug": "backstage-cms",
-      "src": "/avatar.jpg",
-      "tags": ["Next.js", "Typescript", "Apollo GraphQL", "React Final Form"],
-      "bulletPoints": [
-        "Bullet point A",
-        "Bullet point B"
-      ]
+      "src": "/backstage-cms/hero-2.png",
+      "tags": ["Next", "Typescript", "React", "Apollo GraphQL", "React Final Form"]
     },
     {
       "title": "Proximity",
       "slug": "proximity",
-      "src": "/avatar.jpg",
-      "tags": ["React Native", "Javascript", "Apollo GraphQL", "Python", "Django", "PostgreSQL", "PostGis", "Ariadne"],
-      "bulletPoints": [
-        "Bullet point A",
-        "Bullet point B"
-      ]
+      "tags": ["React Native", "Javascript", "Apollo GraphQL", "Django", "Python", "Socket.IO", "PostgreSQL", "PostGIS", "Ariadne", "AWS", "Firebase"]
     }
   ]
 }

@@ -8,7 +8,7 @@ const Page = () => {
         <h1>Proximity</h1>
         <p>Have you ever gone to a new coffee shop and wonder what others are having? Have you ever lost your keys in the gym and wonder if anyone has found them? Well, there is an app for that!</p>
         <p>Proximity anonymously connects you with the people around you in real time.  The app continuously monitors your surroundings and dynamically opens chat streams with everyone within a 100 meter radius. All chat messages are then combined into a single familiar user interface.</p>
-        <p>Proximity is a personal project that I've built outside of my professional life. It is not released to Google Play or the App Store as I don't believe it is feature-rich enough to retain an audience. However, It has gone through live testing with friends and family.</p>
+        <p>Proximity is a personal project that I've built outside of my professional life. It is not released to Google Play or the App Store as I don't believe it is feature-rich enough to retain a user base (yet). However, It has gone through live testing with friends and family.</p>
       </header>
 
       <SideBySideSections

@@ -1,48 +1,48 @@
-'use client'
-
 import Image from "next/image"
-import CodeSamples from "@/components/codeSamples"
-import ProjectContainer from "@/components/projectContainer"
-import useProject from "@/hooks/useProject"
+import CodeSamples from "@/components/CodeSamples"
+import ProjectContainer from "@/components/ProjectContainer"
+import SideBySideSections from "@/components/SideBySideSections"
 
 const Page = () => {
-  const project = useProject()!
-
   return (
     <ProjectContainer>
       <header>
-        <h1>{ project.title }</h1>
+        <h1>Backstage CMS</h1>
         <Image src="/backstage-cms/hero-2.png" alt="Backstage CMS edit page example" width={1280} height={864} />
         <p>The Backstage CMS project was a ground-up rebuild of VICE's headless content management system, migrating the frontend from <a href="https://vuejs.org/" target="_blank">Vue.js</a> to <a href="https://nextjs.org/" target="_blank">Next.js</a> while also migrating it's backend integration from VICE's REST API to a new GraphQL API.</p>
         <p>The goal of this project was to modernize VICE's tech stack while also attaining uniform tech stacks across projects within the company.</p>
         <p>I was the engineering manager, acting lead and acting project manager. I also hired two engineers to dedicate to this project.</p>
       </header>
 
-      <div className="flex gap-6 items-start">
-        <section className="w-1/2">
-          <h2>Technical Highlights</h2>
-          <ul className="list-disc">
-            <li>Headless CMS built with <a href="https://nextjs.org/" target="_blank">Next.js</a></li>
-            <li><a href="https://final-form.org/react" target="_blank">React Final Form</a> for form state management</li>
-            <li><a href="https://www.apollographql.com/docs/react" target="_blank">Apollo Client</a> for GraphQL integration</li>
-            <li><a href="https://www.apollographql.com/docs/react/api/link/apollo-link-rest" target="_blank">Apollo REST Link</a> for REST API integration</li>
-            <li>Deployed with <a href="https://circleci.com/" target="_blank">CircleCI</a></li>
-            <li>Served via <a href="https://aws.amazon.com/" target="_blank">AWS</a></li>
-          </ul>
-        </section>
-        <section className="w-1/2">
-          <h2>Features</h2>
-          <ul>
-            <li>Publishing and scheduling a variety of content types</li>
-            <li>Currate content for landing pages</li>
-            <li>User roles and permissions</li>
-            <li>Auto-save</li>
-            <li>Real-time view of who is working on what</li>
-            <li>Prevent users from overwriting each other</li>
-            <li>Prevent users from losing unsaved work</li>
-          </ul>
-        </section>
-      </div>
+      <SideBySideSections
+        left={
+          <>
+            <h2>Technical Highlights</h2>
+            <ul className="list-disc">
+              <li>Headless CMS built with <a href="https://nextjs.org/" target="_blank">Next.js</a></li>
+              <li><a href="https://final-form.org/react" target="_blank">React Final Form</a> for form state management</li>
+              <li><a href="https://www.apollographql.com/docs/react" target="_blank">Apollo Client</a> for GraphQL integration</li>
+              <li><a href="https://www.apollographql.com/docs/react/api/link/apollo-link-rest" target="_blank">Apollo REST Link</a> for REST API integration</li>
+              <li>Deployed with <a href="https://circleci.com/" target="_blank">CircleCI</a></li>
+              <li>Served via <a href="https://aws.amazon.com/" target="_blank">AWS</a></li>
+            </ul>
+          </>
+        }
+        right={
+          <>
+            <h2>Features</h2>
+            <ul>
+              <li>Publishing and scheduling a variety of content types</li>
+              <li>Currate content for landing pages</li>
+              <li>User roles and permissions</li>
+              <li>Auto-save</li>
+              <li>Real-time view of who is working on what</li>
+              <li>Prevent users from overwriting each other</li>
+              <li>Prevent users from losing unsaved work</li>
+            </ul>
+          </>
+        }
+      />
 
       <p>The following sections detail technical areas of the project where I directly contributed the most.</p>
 

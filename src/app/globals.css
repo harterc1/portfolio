@@ -39,24 +39,20 @@ article {
     @apply text-sky-400 font-medium
   }
 
-  h1, h2, h3, h4 {
-    @apply my-2
-  }
-
   h1 {
-    @apply text-5xl uppercase font-extrabold
+    @apply text-4xl sm:text-5xl uppercase font-extrabold my-3
   }
 
   h2 {
-    @apply text-3xl font-bold
+    @apply text-2xl font-bold my-2
   }
 
   h3 {
-    @apply text-2xl font-bold
+    @apply text-xl font-bold my-2
   }
 
   h4 {
-    @apply text-lg font-bold
+    @apply text-lg font-bold my-2
   }
 
   section {

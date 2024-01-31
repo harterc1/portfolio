@@ -1,5 +1,12 @@
 import ProjectContainer from "@/components/ProjectContainer"
 import SideBySideSections from "@/components/SideBySideSections"
+import buildMetaTitle from "@/utils/buildMetaTitle"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: buildMetaTitle('Proximity')
+}
+
 
 const Page = () => {
   return (

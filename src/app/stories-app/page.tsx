@@ -3,6 +3,12 @@ import CodeSamples from "@/components/CodeSamples"
 import ProjectContainer from "@/components/ProjectContainer"
 import FloatingVideo from "@/components/FloatingVideo"
 import SideBySideSections from "@/components/SideBySideSections"
+import { Metadata } from "next"
+import buildMetaTitle from "@/utils/buildMetaTitle"
+
+export const metadata: Metadata = {
+  title: buildMetaTitle('Stories App')
+}
 
 const Page = () => (
   <ProjectContainer>

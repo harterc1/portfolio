@@ -14,7 +14,6 @@ const Nav = () => (
       </div>
       
       <Link href="http://www.github.com/harterc1/portfolio" target="_blank" className="p-1 my-1 inline-block">
-        <span className="font-mono text-[0.65rem] uppercase mr-2">View Source</span>
         <Github size="2rem" title="Chad Harter's Github"/>
       </Link>
       <Link href="https://www.linkedin.com/in/chad-harter/" target="_blank" className="p-1 my-1 inline-block">

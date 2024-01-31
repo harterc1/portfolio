@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <header className="pb-4">
-        <div className="flex gap-6">
+        <div className="flex gap-8">
           <div className="flex-1 flex-shrink">
             <span className="text-2xl sm:text-3xl font-bold leading-normal">Hi, I'm Chad.</span>
             <span className="text-sm sm:text-base block">Engineering lead, experienced in full-stack web and native app development.</span>

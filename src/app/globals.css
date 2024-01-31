@@ -19,6 +19,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+nav {
+  height: --nav-height;
+}
+
 main {
   @apply m-auto py-4 px-8 sm:px-16 sm:py-8 max-w-screen-md mt-[--nav-height]
 }

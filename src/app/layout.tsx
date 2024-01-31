@@ -4,11 +4,12 @@ import './globals.css'
 import Nav from '@/components/Nav'
 
 import data from "../data.json"
+import buildMetaTitle from '@/utils/buildMetaTitle'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: data.title,
+  title: buildMetaTitle(),
   description: data.description,
   robots: {
     index: false,

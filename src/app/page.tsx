@@ -9,7 +9,7 @@ export default function Home() {
         <div className="flex gap-8">
           <div className="flex-1 flex-shrink">
             <span className="text-2xl sm:text-3xl font-bold leading-normal">Hi, I'm Chad.</span>
-            <span className="text-sm sm:text-base block">Engineering lead, experienced in full-stack web and native app development.</span>
+            <span className="text-sm sm:text-base block">{ data.description }</span>
             <h1 className="mt-8">
               Welcome to my
               <br />

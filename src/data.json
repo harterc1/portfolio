@@ -6,19 +6,22 @@
       "title": "Stories App",
       "slug": "stories-app",
       "src": "/stories-app/card.png",
-      "tags": ["iOS", "Swift", "SwiftUI", "AVFoundation", "Core Animation", "Apollo GraphQL"]
+      "tags": ["iOS", "Swift", "SwiftUI", "AVFoundation", "Core Animation", "Apollo GraphQL"],
+      "years": [2022, 2023]
     },
     {
       "title": "Backstage CMS",
       "slug": "backstage-cms",
       "src": "/backstage-cms/hero-2.png",
-      "tags": ["Next.js", "Typescript", "React", "Apollo GraphQL", "React Final Form"]
+      "tags": ["Next.js", "Typescript", "React", "Apollo GraphQL", "React Final Form"],
+      "years": [2023, 2024]
     },
     {
       "title": "Proximity",
       "slug": "proximity",
       "src": "/proximity/card.png",
-      "tags": ["React Native", "Javascript", "Apollo GraphQL", "Django", "Django Rest Framework", "Python", "Socket.IO", "PostgreSQL", "PostGIS", "Ariadne", "AWS", "Firebase"]
+      "tags": ["React Native", "Javascript", "Apollo GraphQL", "Django", "Django Rest Framework", "Python", "Socket.IO", "PostgreSQL", "PostGIS", "Ariadne", "AWS", "Firebase"],
+      "years": [2021, 2023]
     }
   ]
 }

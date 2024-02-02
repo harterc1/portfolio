@@ -7,17 +7,20 @@ const ProjectCard = ({
   src,
   href,
   tags,
+  years,
 }: {
   title: string,
   src: string,
   href: string,
   tags: string[],
+  years: number[],
 }) => (
-  <Link className="!opacity-100 bg-neutral-800 rounded-xl p-4" href={href}>
+  <Link className="!opacity-100 bg-neutral-800 rounded-xl pt-6 pb-8 px-8" href={href}>
     <article>
-      <h2 className="text-3xl sm:text-3xl uppercase font-extrabold">
+      <h2 className="inline text-3xl uppercase font-extrabold mr-2">
         { title }
       </h2>
+      <span className="text-xs text-neutral-400 italic my-2">{`${years[0]} - ${years[1]}`}</span>
       <div className="flex my-2 gap-1.5 flex-wrap pb-1">
         {tags.map(tag => (
           <Tag key={tag}>{ tag }</Tag>

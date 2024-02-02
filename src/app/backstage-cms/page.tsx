@@ -105,7 +105,7 @@ const Page = () => {
           <Image className="sm:w-1/2" src="/backstage-cms/dirty-modal-custom.png" alt="Backstage CMS custom dirty warning modal" height={212} width={320} />
           <Image className="sm:w-1/2" src="/backstage-cms/dirty-modal-native.png" alt="Backstage CMS native dirty warning modal" height={212} width={320} />
         </div>
-        <p>As long as <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/DirtyWarningModal.tsx" target="_blank"><code>DirtyWarningModal</code></a> exists as a child of a React Final Form <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> component, the user will always be prompted if they attempt to leave the page while the form is dirty.</p>
+        <p>As long as <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/DirtyWarningModal.tsx" target="_blank"><code>DirtyWarningModal</code></a> exists as a child of a React Final Form <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> component, the user will always be prompted if they attempt to leave the page while the form is <a href="https://final-form.org/docs/final-form/types/FormState#dirty" target="_blank">dirty</a>.</p>
       </section>
     </ProjectContainer>
   )

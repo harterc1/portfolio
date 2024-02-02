@@ -5,6 +5,7 @@ import Nav from '@/components/Nav'
 
 import data from "../data.json"
 import buildMetaTitle from '@/utils/buildMetaTitle'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,6 +37,7 @@ export default function RootLayout({
           {children}
         </main>
         <Nav />
+        <Footer />
       </body>
     </html>
   )

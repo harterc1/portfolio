@@ -9,6 +9,7 @@ const FloatingVideo = ({ src }: { src: string }) => (
     muted
     loop
     playsInline
+    controls
   />
 )
 

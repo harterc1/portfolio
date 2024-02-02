@@ -1,3 +1,5 @@
+import CodeSamples from "@/components/CodeSamples"
+import FloatingVideo from "@/components/FloatingVideo"
 import ProjectContainer from "@/components/ProjectContainer"
 import SideBySideSections from "@/components/SideBySideSections"
 import buildMetaTitle from "@/utils/buildMetaTitle"
@@ -13,8 +15,9 @@ const Page = () => {
     <ProjectContainer>
       <header className="inline-block">
         <h1>Proximity</h1>
-        <Image className="w-1/2 sm:w-1/3 sm:float-right sm:ml-6 sm:mb-6 aspect-vertical-video" src='/proximity/hero-scaled.png' alt='Proximity app screenshot' width={334} height={720} />
-        <p>Proximity is a native app for <b>iOS</b> and <b>Android</b> that anonymously connects you with the nearby people in real time.  The app continuously monitors GPS location and dynamically opens chat streams with everyone within a 100 meter radius. All chat messages are then combined into a single familiar user interface.</p>
+        <FloatingVideo src="/proximity/proximity-demo.mp4" />
+        {/* <Image className="w-1/2 sm:w-1/3 sm:float-right sm:ml-6 sm:mb-6 aspect-vertical-video" src='/proximity/hero-scaled.png' alt='Proximity app screenshot' width={334} height={720} /> */}
+        <p>Proximity is a native app for <b>iOS</b> and <b>Android</b> that anonymously connects you with nearby people in real time.  The app continuously monitors GPS location and dynamically opens chat streams with everyone within a 100 meter radius. All chat messages are then combined into a single familiar user interface.</p>
         <p>Proximity is a personal project that I've built in my free time. It is not released to Google Play or the App Store (yet). However, It has gone through live testing with friends and family.</p>
       </header>
 
@@ -50,19 +53,27 @@ const Page = () => {
       />
 
       <section>
+        <h2>How it works</h2>
+        <p>The single chat interface looks simple, but it has a lot going on. Not only is it aggregating real-time chat messages from all nearby users (and any messages you send yourself), but it also acts as an infinitely scrolling feed, showing the chat history prioritized by distance from your location.</p>
+        <p>The feed initializes as an array of messages, the first page of chat history. Incoming chat messages come in through a <a href="https://socket.io/" target="_blank">Socket.IO</a> server and are instantly inserted at the beginning of the array. Outgoing chat messages are also sent through the <a href="https://socket.io/" target="_blank">Socket.IO</a> server, but to provide instant feedback to the user, a client-side message object is constructed and inserted at the beginning of the array. Additionally, if the user attempts to scroll to the end of the chat, new pages of chat history are incrementally fetched from the backend using <a href="https://www.apollographql.com/docs/react/" target="_blank">Apollo GraphQL Client</a> and pushed to the end of the message array.</p>
+        
+        <Image className="w-1/2 bg-white p-4" src="/proximity/proximity-message-array.jpg" alt="Proximity message array" width={356} height={451} />
+      
+        <p>Since there was quite a bit of logic to manage this message array, I pulled all the logic into a React Hook. Since the logic was not buried in a component, this allowed me to easily test a variety of UI designs while keeping the chat logic consistent.</p>
+      
+        <CodeSamples
+          hrefs={[
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/Chat.js',
+          ]}
+        />
+      </section>
+
+      <section>
         <h2>Demo</h2>
-        <p>The following video shows a scenario between two users, demonstrating the following features:</p>
-        <ul>
-          <li>Onboarding</li>
-          <li>Push notifications</li>
-          <li>Updates of who is nearby</li>
-          <li>Typing indicators</li>
-          <li>Text and media messaging</li>
-        </ul>
-        <div className="my-4">
-          <iframe className="aspect-video w-full" width="560" height="315" src="https://www.youtube.com/embed/oQ0locGTtuA?si=6Lps4I7VoXDCm3Ce" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-        </div>
-     </section>
+        <p>The following video shows a scenario between two users, demonstrating the <b>onboarding flow</b>, <b>push notifications</b>, <b>typing indicators</b> as well as <b>text and media messaging</b>.</p>
+        <iframe className="aspect-video w-full" width="560" height="315" src="https://www.youtube.com/embed/oQ0locGTtuA?si=6Lps4I7VoXDCm3Ce" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+      </section>
+
     </ProjectContainer>
   )
 }

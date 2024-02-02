@@ -13,7 +13,7 @@ const Page = () => {
     <ProjectContainer>
       <header className="inline-block">
         <h1>Proximity</h1>
-        <Image className="w-1/2 sm:w-1/3 sm:float-right sm:ml-6 sm:mb-6 aspect-vertical-video" src='/proximity/hero.png' alt='Proximity app screenshot' width={594} height={1280} />
+        <Image className="w-1/2 sm:w-1/3 sm:float-right sm:ml-6 sm:mb-6 aspect-vertical-video" src='/proximity/hero-scaled.png' alt='Proximity app screenshot' width={334} height={720} />
         <p>Proximity is a native app for <b>iOS</b> and <b>Android</b> that anonymously connects you with the nearby people in real time.  The app continuously monitors GPS location and dynamically opens chat streams with everyone within a 100 meter radius. All chat messages are then combined into a single familiar user interface.</p>
         <p>Proximity is a personal project that I've built in my free time. It is not released to Google Play or the App Store (yet). However, It has gone through live testing with friends and family.</p>
       </header>

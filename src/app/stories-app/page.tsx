@@ -15,8 +15,8 @@ const Page = () => (
     <header className="inline-block">
       <h1>Stories App</h1>
       <FloatingVideo src="/stories-app/stories-app-trimmed.mp4" />
-      <p>The Stories App is a tool to enable journalists to streamline the creation process for video social media content.</p>
-      <p>The app provides brand-approved templates and video editing capability with 100% offline support. It does this with zero buffering while editing and stores all video projects locally so they can be edited later.</p>
+      <p>The Stories App enables journalists to streamline the creation process for video-based social media content.</p>
+      <p>The app provides branded templates and video editing capability with offline support. It does this with zero buffering while editing and stores all video projects locally so they can be edited later.</p>
       <p>I was the engineering manager and acting lead on the project.</p>
     </header>
 
@@ -62,7 +62,7 @@ const Page = () => (
           
           <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/CameraPreviewView.swift']} />
           
-          <p>The majority of the controller logic for constructing the <a href="https://developer.apple.com/documentation/avfoundation/avcapturesession" target="_blank"><code>AVCaptureSession</code></a> is based off of Apple's sample <a href="https://developer.apple.com/documentation/avfoundation/capture_setup/avcam_building_a_camera_app" target="_blank">AVCam</a>.</p>
+          <p>The majority of the controller logic for constructing the <a href="https://developer.apple.com/documentation/avfoundation/avcapturesession" target="_blank"><code>AVCaptureSession</code></a> is based off of Apple's <a href="https://developer.apple.com/documentation/avfoundation/capture_setup/avcam_building_a_camera_app" target="_blank">AVCam</a>.</p>
           <p>The camera also allows multiple gesture types including tapping to adjust focus as well as simultaneously supporting two methods for adjusting zoom level. This is implemented using custom <a href="https://developer.apple.com/documentation/swiftui/viewmodifier" target="_blank">view modifiers</a> and a custom focus indicator view.</p>
           
           <CodeSamples
@@ -91,10 +91,36 @@ const Page = () => (
     </section>
 
     <section>
-      <h2 id="live-preview">Live Preview</h2>
-      <p>A live preview of the user's story is always visible while editing. In other words, the video assets and their corresponding templates are all played back in real-time so the user can see what they're building.</p>
-      <p>This feature was built by extending <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a>. Since <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> is what <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a> uses to display content, the app can construct a visual that represents a template in the same way it would build any other UI.</p>
-      <p>You may be asking, "Why not just use <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a> then?". Since <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> is lower level than <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a>, it allows us to re-use our <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a>s in utilities provided by <a href="https://developer.apple.com/av-foundation/" target="_blank">AVFoundation</a> (More on that later).</p>
+      <h2 id="template-rendering">Template Rendering</h2>
+      <p>Once a template is selected, it's corresponding template data is parsed and an in-memory representation of it is constructed as a tree of "nodes". From there, whenever a template needs to be rendered on the screen, the app traverses the tree and constructs a hierarchy of <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a>s.</p>
+      <p><a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> is low-level enough that the app can use the same underlying <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> structure across all use cases within the app. In contrast, if we were to display the templates using <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a>, the app could display templates in the user interface but would not be able to use the same structure to render the templates into the final video while exporting.</p>
+      <p>In the following examples, the blue <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayer.swift" target="_blank"><code>NodeLayer</code></a> object represents the entire <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> structure for any template.  This is to highlight code re-use.</p>
+
+      <section>
+        <h3>Displaying a template in a view</h3>
+        <p>The root <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> can be simply added as a sublayer to any <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a>. Additionally, when a user taps the <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a>, <a href="https://developer.apple.com/documentation/quartzcore/calayer/1410972-hittest" target="_blank"><code>CALayer.hitTest</code></a> is used to determine which <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> was tapped. This is useful as some template elements are expected to be interactable.</p>
+        
+        <Image className="w-full sm:w-1/2" src="/stories-app/node-layer-view.png" alt="Diagram for displaying a template in a view" width={976} height={684} />
+        
+        <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayerView.swift']} />
+      </section>
+
+      <section>
+        <h3>Rendering a template during an export</h3>
+        <p>When the user is finished editing, the app uses an <a href="https://developer.apple.com/documentation/avfoundation/avassetexportsession" target="_blank"><code>AVAssetExportSession</code></a> to export the final product.</p>
+        <p>The export session has a fairly complicated configuration, but ultimately it allows you to overlay any number of <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a>s over your video using <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a>. It even syncs any <a href="https://developer.apple.com/documentation/quartzcore/caanimation" target="_blank"><code>CAAnimation</code></a> animations that are tied in so that they play along with your composition.  <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a> is not shown in the diagram below, but it is what ties the <a href="https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition" target="_blank"><code>AVMutableVideoComposition</code></a> to the <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayer.swift" target="_blank"><code>NodeLayer</code></a>.</p>
+        
+        <Image className="w-full sm:w-1/2" src="/stories-app/node-layer-export.png" alt="Diagram for displaying a template in a view" width={1004} height={1012} />
+      </section>
+
+      <section>
+        <h3>Playing a template within a video player</h3>
+        <p>Since <a href="https://developer.apple.com/documentation/avfoundation/avplayer/" target="_blank"><code>AVPlayer</code></a> plays <a href="https://developer.apple.com/documentation/avfoundation/avplayeritem" target="_blank"><code>AVPlayerItem</code></a>s and <a href="https://developer.apple.com/documentation/avfoundation/avplayeritem" target="_blank"><code>AVPlayerItem</code></a>s can be given an <a href="https://developer.apple.com/documentation/avfoundation/avcomposition" target="_blank"><code>AVComposition</code></a>, we can conceptualize the idea of simply re-using most of the same logic to construct an <a href="https://developer.apple.com/documentation/avfoundation/avmutablecomposition" target="_blank"><code>AVMutableComposition</code></a> that we used for creating an <a href="https://developer.apple.com/documentation/avfoundation/avassetexportsession" target="_blank"><code>AVAssetExportSession</code></a> (above).</p>
+        <p>However, <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a> doesn't work in this context (If I recall correctly, the app will crash), so we need an alternative way to render the user's templates. This is where <a href="https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer" target="_blank"><code>AVSynchronizedLayer</code></a> comes in. <a href="https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer" target="_blank"><code>AVSynchronizedLayer</code></a> simply ties a <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> to an <a href="https://developer.apple.com/documentation/avfoundation/avplayeritem"><code>AVPlayerItem</code></a>. In this case, the <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a>s aren't configured directly in the <a href="https://developer.apple.com/documentation/avfoundation/avmutablecomposition" target="_blank"><code>AVMutableComposition</code></a>.  Instead, they are played in parallel by <a href="https://developer.apple.com/documentation/avfoundation/avplayeritem" target="_blank"><code>AVPlayerItem</code></a> and the user can't tell the difference.</p>
+        <p>This is also how the app achieves it's <b>live preview</b> with zero buffering.</p>
+
+        <Image className="w-full" src="/stories-app/node-layer-player.png" alt="Diagram for displaying a template in a view" width={1474} height={1042} />
+      </section>
     </section>
 
     <section>
@@ -111,38 +137,6 @@ const Page = () => (
           'https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+BlockNodeLayer.swift',
         ]}
       />
-    </section>
-
-    <section>
-      <h2 id="template-rendering">Template Rendering</h2>
-      <p>There are benefits to choosing <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> to display templates. This enables the app to use the same <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> structure across all applications within the app.</p>
-      <p>In the following examples, the blue <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayer.swift" target="_blank"><code>NodeLayer</code></a> object represents the <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> structure for any template.  This is to highlight code re-use.</p>
-
-      <section>
-        <h3>Displaying a template in a view</h3>
-        <p>The root <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> can be simply added as a sublayer to any <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a>. Additionally, when a user taps the <a href="https://developer.apple.com/documentation/uikit/uiview" target="_blank"><code>UIView</code></a>, <a href="https://developer.apple.com/documentation/quartzcore/calayer/1410972-hittest" target="_blank"><code>CALayer.hitTest</code></a> is used to determine which <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> was tapped. This was useful as some template elements are expected to be interactable.</p>
-        
-        <Image className="w-1/2" src="/stories-app/node-layer-view.png" alt="Diagram for displaying a template in a view" width={976} height={684} />
-        
-        <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayerView.swift']} />
-      </section>
-
-      <section>
-        <h3>Rendering a template during an export</h3>
-        <p>When the user is finished editing, the app uses an <a href="https://developer.apple.com/documentation/avfoundation/avassetexportsession" target="_blank"><code>AVAssetExportSession</code></a> to export the final product.</p>
-        <p>The export session has a fairly complicated configuration, but ultimately it allows you to overlay any number of <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a>s over your video using <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a>. It even syncs any <a href="https://developer.apple.com/documentation/quartzcore/caanimation" target="_blank"><code>CAAnimation</code></a> animations that are tied in so that they play along with your video(s).  <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a> is not shown in the diagram below, but it is what ties the <a href="https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition" target="_blank"><code>AVMutableVideoComposition</code></a> to the <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/FilterEngine+NodeLayer.swift" target="_blank"><code>NodeLayer</code></a>.</p>
-        
-        <Image className="w-1/2" src="/stories-app/node-layer-export.png" alt="Diagram for displaying a template in a view" width={1004} height={1012} />
-      </section>
-
-      <section>
-        <h3>Playing a template within a video player</h3>
-        <p>Since <a href="https://developer.apple.com/documentation/avfoundation/avplayer/" target="_blank"><code>AVPlayer</code></a> plays <a href="https://developer.apple.com/documentation/avfoundation/avplayeritem" target="_blank"><code>AVPlayerItem</code></a>s and <a href="https://developer.apple.com/documentation/avfoundation/avplayeritem" target="_blank"><code>AVPlayerItem</code></a>s can be given an <a href="https://developer.apple.com/documentation/avfoundation/avcomposition" target="_blank"><code>AVComposition</code></a>, we can conceptualize the idea of simply re-using most of the same logic to construct an <a href="https://developer.apple.com/documentation/avfoundation/avmutablecomposition" target="_blank"><code>AVMutableComposition</code></a> that we used for creating an <a href="https://developer.apple.com/documentation/avfoundation/avassetexportsession" target="_blank"><code>AVAssetExportSession</code></a>.</p>
-        <p>However, <a href="https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool" target="_blank"><code>AVVideoCompositionCoreAnimationTool</code></a> doesn't work in this context (If I recall correctly, the app will crash), so we need an alternative way to render the user's templates. This is where <a href="https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer" target="_blank"><code>AVSynchronizedLayer</code></a> comes in. <a href="https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer" target="_blank"><code>AVSynchronizedLayer</code></a> simply ties a <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a> to an <a href="https://developer.apple.com/documentation/avfoundation/avplayeritem"><code>AVPlayerItem</code></a>. In this case, the <a href="https://developer.apple.com/documentation/quartzcore/calayer" target="_blank"><code>CALayer</code></a>s aren't configured directly in the <a href="https://developer.apple.com/documentation/avfoundation/avmutablecomposition" target="_blank"><code>AVMutableComposition</code></a>.  Instead, they are played in parallel by <a href="https://developer.apple.com/documentation/avfoundation/avplayeritem" target="_blank"><code>AVPlayerItem</code></a> and the user can't tell the difference.</p>
-        <p>This is also how the app achieves it's <a href="#live-preview">live preview</a> with zero buffering.</p>
-
-        <Image className="w-full" src="/stories-app/node-layer-player.png" alt="Diagram for displaying a template in a view" width={1474} height={1042} />
-      </section>
     </section>
   </ProjectContainer>
 )

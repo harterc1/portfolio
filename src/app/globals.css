@@ -28,7 +28,7 @@ main {
 }
 
 a {
-  @apply hover:opacity-80 active:opacity-60
+  @apply hover:opacity-80 active:opacity-60 hover:bg-opacity-75 active:bg-opacity-50
 }
 
 p {

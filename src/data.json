@@ -17,6 +17,7 @@
     {
       "title": "Proximity",
       "slug": "proximity",
+      "src": "/proximity/card.png",
       "tags": ["React Native", "Javascript", "Apollo GraphQL", "Django", "Python", "Socket.IO", "PostgreSQL", "PostGIS", "Ariadne", "AWS", "Firebase"]
     }
   ]

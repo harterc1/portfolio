@@ -32,10 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Nav />
         <main>
           {children}
         </main>
+        <Nav />
       </body>
     </html>
   )

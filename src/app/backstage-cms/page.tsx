@@ -85,6 +85,13 @@ const Page = () => {
         <h2>Strict Types For Form Data</h2>
         <p>Any data-heavy application should use <a href="https://www.typescriptlang.org/tsconfig#strict" target="_blank">strict</a> typing and a CMS is a perfect example of this.  While the types directly conforming to a GraphQL API Schema can be automatically generated via tools like <a href="https://the-guild.dev/graphql/codegen" target="_blank">CodeGen</a>, the data returned from an API are often <b>not</b> in the most convenient structure for UI components, form validation, etc.</p>
         <p>As Backstage CMS is a <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a> application, I implemented patterns for the team to follow to  restructure this data for ease within the UI while preventing hardcoded strings from being sprinkled throughout the codebase.</p>
+
+        <CodeSamples
+          hrefs={[
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/form.types.ts',
+            'https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/useArticleFields.ts',
+          ]}
+        />
       </section>
 
       <section>

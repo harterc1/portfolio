@@ -14,7 +14,7 @@ const Nav = () => (
       </div>
       
       <Link href="http://www.github.com/harterc1/portfolio" target="_blank" className="p-1 my-1 inline-block">
-        <Github size="2rem" title="Chad Harter's Github"/>
+        <Github size="2rem" title="Chad Harter's Github" />
       </Link>
       <Link href="https://www.linkedin.com/in/chad-harter/" target="_blank" className="p-1 my-1 inline-block">
         <LinkedinSquare size="2rem" title="Chad Harter's LinkedIn" />

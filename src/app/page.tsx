@@ -22,7 +22,7 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="grid sm:grid-cols-2 gap-6 mt-6">
+      <div className="grid sm:grid-cols-1 gap-6 mt-6">
         {data.projects.map(project => (
           <ProjectCard
             key={project.slug}

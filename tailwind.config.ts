@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     aspectRatio: {
       'vertical-video': '592 / 1280',
+      'video': '16 / 9',
     },
     extend: {
       backgroundImage: {

@@ -12,13 +12,14 @@ export const metadata: Metadata = {
 
 const Page = () => (
   <ProjectContainer>
-    <header className="inline-block">
+    <header>
       <h1>Stories App</h1>
       <FloatingVideo src="/stories-app/stories-app-trimmed.mp4" />
       <p>The Stories App enables journalists to streamline the creation process for video-based social media content.</p>
       <p>The app provides branded templates and video editing capability with offline support. It does this with zero buffering while editing and stores all video projects locally so they can be edited later.</p>
       <p>I was the engineering manager and acting lead on the project.</p>
     </header>
+    <div className="clear-both" />
 
     <SideBySideSections
       left={

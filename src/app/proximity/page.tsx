@@ -32,11 +32,11 @@ const Page = () => {
               <li>Native app for <b>iOS</b> and <b>Android</b></li>
               <li>Built with <a href="https://reactnative.dev/" target="_blank">React Native</a> and <a href="https://expo.dev/" target="_blank">Expo</a></li>
               <li><a href="https://www.djangoproject.com/" target="_blank">Django</a> web server and admin interface hosted on <a href="https://aws.amazon.com/" target="_blank">AWS</a></li>
-              <li>GraphQL API served via <a href="https://ariadnegraphql.org/" target="_blank">Ariadne</a> and consumed using <a href="https://www.apollographql.com/docs/react/" target="_blank">Apollo Client</a></li>
+              <li>GraphQL API served using <a href="https://ariadnegraphql.org/" target="_blank">Ariadne</a> and consumed using <a href="https://www.apollographql.com/docs/react/" target="_blank">Apollo Client</a></li>
               <li>REST API served using <a href="https://www.django-rest-framework.org/" target="_blank">Django REST Framework</a></li>
               <li><a href="https://socket.io/" target="_blank">Socket.IO</a> for real-time chat features</li>
               <li>Geo-relational data support through <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a> / <a href="https://postgis.net/" target="_blank">PostGIS</a></li>
-              <li>User authentication and media storage implemented via <a href="https://firebase.google.com/" target="_blank">Firebase</a></li>
+              <li>User authentication and media storage via <a href="https://firebase.google.com/" target="_blank">Firebase</a></li>
               <li>App deployed via <a href="https://expo.dev/eas" target="_blank">Expo EAS</a></li>
             </ul>
           </>
@@ -62,7 +62,7 @@ const Page = () => {
         
         <Image className="sm:w-1/2 bg-white p-4" src="/proximity/proximity-message-array.jpg" alt="Proximity message array" width={356} height={451} />
       
-        <p>Since there was quite a bit of logic to manage this message array, I pulled all the logic into a React Hook. Since the logic was not buried in a component, this allowed me to easily test a variety of UI designs while keeping the chat logic consistent.</p>
+        <p>Since there was quite a bit of logic to manage this message array, all the logic was pulled into a <a href="https://legacy.reactjs.org/docs/hooks-intro.html" target="_blank">React Hook</a>. This allows for rapidly testing a variety of UI designs while keeping the chat logic consistent.</p>
       
         <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/Chat.js']} />
       </section>
@@ -70,7 +70,7 @@ const Page = () => {
       <section>
         <h2>Media Viewer</h2>
         <FloatingVideo src="/proximity/proximity-media-viewer.mp4" />
-        <p>Proximity has custom modal that implements simultaneous pinch and drag gestures to allow the user to zoom in and out on it's content.  The user can swipe vertically in either direction to dismiss the modal.</p>
+        <p>Proximity has a custom modal that implements simultaneous pinch and drag gestures to allow the user to zoom in and out on it's content.  The user can also swipe vertically in either direction to dismiss the modal.</p>
         <p>This <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/Viewer.js" target="_blank"><code>Viewer</code></a> component is implemented using <a href="https://docs.swmansion.com/react-native-reanimated/" target="_blank">React Native Reanimated</a>.</p>
         <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/Viewer.js']} />
       </section>

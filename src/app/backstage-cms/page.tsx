@@ -15,8 +15,7 @@ const Page = () => {
       <header>
         <h1>Backstage CMS</h1>
         <Image src="/backstage-cms/hero-2.png" alt="Backstage CMS edit page example" width={1280} height={864} />
-        <p>The Backstage CMS project was a ground-up rebuild of VICE's headless content management system, migrating the frontend from <a href="https://vuejs.org/" target="_blank">Vue.js</a> to <a href="https://nextjs.org/" target="_blank">Next.js</a> while also migrating it's backend integration from VICE's REST API to a new GraphQL API.</p>
-        <p>The goal of this project was to modernize VICE's tech stack while also attaining uniform tech stacks across projects within the company.</p>
+        <p>The Backstage CMS project was a ground-up rebuild of VICE's headless content management system, migrating the frontend from <a href="https://vuejs.org/" target="_blank">Vue.js</a> to <a href="https://nextjs.org/" target="_blank">Next.js</a> while also migrating it's backend integration from a legacy REST API to a new GraphQL API.</p>
         <p>I was the engineering manager, acting lead and acting project manager. I also hired two engineers to dedicate to this project.</p>
       </header>
 
@@ -38,31 +37,28 @@ const Page = () => {
           <>
             <h2>Features</h2>
             <ul>
-              <li>Publishing and scheduling a variety of content types</li>
-              <li>Currate content for landing pages</li>
+              <li>Publish and schedule a variety of content types</li>
+              <li>Curate content for landing pages</li>
               <li>User roles and permissions</li>
               <li>Auto-save</li>
               <li>Real-time view of who is working on what</li>
-              <li>Prevent users from overwriting each other</li>
-              <li>Prevent users from losing unsaved work</li>
+              <li>Safety mechanisms to prevent losing unsaved work or overwriting others</li>
             </ul>
           </>
         }
       />
 
-      <p>The following sections detail technical areas of the project where I directly contributed the most.</p>
-
       <section>
         <h2>Auto-save</h2>
-        <p>One requirement for the Backstage CMS project was to auto-save a user's work. Every time a user pauses for more than a couple seconds, their work will automatically save to the server.</p>
+        <p>Backstage CMS auto-saves the user's work. Every time a user pauses for more than a couple seconds, their work will automatically save to the server.</p>
         <p>View the video below to observe a user editing an article. Notice how the buttons in the upper-right disable briefly while auto-save is running. The user is also never interrupted while saving. At the end of the video, the article is finally scheduled to go live.</p>
         <video controls className="w-full py-2">
           <source src="/backstage-cms/select-auto-save-schedule.mp4" />
         </video>
 
         <h3>The Challenge</h3>
-        <p>Early in the project we chose <a href="https://final-form.org/react" target="_blank">React Final Form</a> to handle our form state management, primarily for it's <a href="https://redux.js.org/" target="_blank">Redux</a>-inspired performance tuning capability. While React Final Form provides some ways to implement auto-save (i.e. <a href="https://final-form.org/docs/react-final-form/types/FormProps#keepdirtyonreinitialize" target="_blank"><code>keepDirtyOnReinitialize</code></a>), it doesn't handle re-hydrating the form with data from the server while also not interrupting the user.</p>
-        <p>So, I created <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a>; a wrapper around React Final Form's <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> component and implemented a custom <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.types.ts#L34" target="_blank"><code>onSave</code></a> prop that allows the developer to re-hydrate the form after submission completes.  <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a> also keeps track of any fields that are changed (or "dirtied") while the form submission is in progress so that it knows which fields to not overwrite. <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a> is also designed to be a drop-in replacement for <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> as all capability and hooks native to React Final Form still work.</p>
+        <p>Early in the project, <a href="https://final-form.org/react" target="_blank">React Final Form</a> was chosen to handle our form state management, primarily for it's <a href="https://redux.js.org/" target="_blank">Redux</a>-inspired performance tuning capability. While React Final Form provides some ways to implement auto-save (i.e. <a href="https://final-form.org/docs/react-final-form/types/FormProps#keepdirtyonreinitialize" target="_blank"><code>keepDirtyOnReinitialize</code></a>), it doesn't handle re-hydrating the form with data from the server while also not interrupting the user.</p>
+        <p><a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a> was created to address this; a wrapper around React Final Form's <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> component and implemented a custom <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.types.ts#L34" target="_blank"><code>onSave</code></a> prop that allows the form to re-hydrate the form after submission completes.  <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a> also keeps track of any fields that are changed (or "dirtied") while the form submission is in progress so that it knows which fields to not overwrite. <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a> is also designed to be a drop-in replacement for <a href="https://final-form.org/docs/react-final-form/api/Form" target="_blank"><code>Form</code></a> as all capability and hooks native to React Final Form still work.</p>
 
         <CodeSamples
           hrefs={[
@@ -84,7 +80,7 @@ const Page = () => {
       <section>
         <h2>Strict Types For Form Data</h2>
         <p>Any data-heavy application should use <a href="https://www.typescriptlang.org/tsconfig#strict" target="_blank">strict</a> typing and a CMS is a perfect example of this.  While the types directly conforming to a GraphQL API Schema can be automatically generated via tools like <a href="https://the-guild.dev/graphql/codegen" target="_blank">CodeGen</a>, the data returned from an API are often <b>not</b> in the most convenient structure for UI components, form validation, etc.</p>
-        <p>As Backstage CMS is a <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a> application, I implemented patterns for the team to follow to  restructure this data for ease within the UI while preventing hardcoded strings from being sprinkled throughout the codebase.</p>
+        <p>As Backstage CMS is a <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a> application, patterns were implemented for the team to follow in order to restructure this data for ease within the UI while preventing hardcoded strings from being sprinkled throughout the codebase.</p>
 
         <CodeSamples
           hrefs={[

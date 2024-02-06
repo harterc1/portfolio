@@ -56,15 +56,23 @@ const Page = () => {
       />
 
       <section>
-        <h2>How it works</h2>
-        <p>The single chat interface looks simple, but it has a lot going on. Not only is it aggregating real-time chat messages from all nearby users (and any messages you send yourself), but it also acts as an infinitely scrolling feed, showing the chat history prioritized by distance from your location.</p>
+        <h2>Is it a feed or a chat?</h2>
+        <p>It's both. The single chat interface looks simple, but it has a lot going on. Not only is it aggregating real-time chat messages from all nearby users (and any messages you send yourself), but it also acts as an infinitely scrolling feed, showing the chat history prioritized by distance from your location.</p>
         <p>The feed initializes as an array of messages, the first page of chat history. Incoming chat messages come in through a <a href="https://socket.io/" target="_blank">Socket.IO</a> server and are instantly inserted at the beginning of the array. Outgoing chat messages are also sent through the <a href="https://socket.io/" target="_blank">Socket.IO</a> server, but to provide instant feedback to the user, a client-side message object is constructed and inserted at the beginning of the array. Additionally, if the user attempts to scroll to the end of the chat, new pages of chat history are incrementally fetched from the backend using <a href="https://www.apollographql.com/docs/react/" target="_blank">Apollo GraphQL Client</a> and pushed to the end of the message array.</p>
         
         <Image className="sm:w-1/2 bg-white p-4" src="/proximity/proximity-message-array.jpg" alt="Proximity message array" width={356} height={451} />
       
         <p>Since there was quite a bit of logic to manage this message array, all the logic was pulled into a <a href="https://legacy.reactjs.org/docs/hooks-intro.html" target="_blank">React Hook</a>. This allows for rapidly testing a variety of UI designs while keeping the chat logic consistent.</p>
-      
+        
         <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/Chat.js']} />
+      </section>
+
+      <section>
+        <h2>Ordering Messages By Distance</h2>
+        <p>The chat is primarily ordered by distance, but the user's exact distance from each message is not used. Message's are placed into buckets called <b>sectors</b>, each <b>sector</b> incrementally being an additional 100 meters from the user. This allows for individual messages in each <b>sector</b> to be ordered by their send time and still read like a conversation in the chat history. If ordering was strictly based off of distance, the conversation would most likely appear very random and scrambled.</p>
+        <p>Refer to the diagram below. Without the concept of <b>sectors</b>, <b>User B</b>'s message would appear before <b>User A</b>'s message and wouldn't make sense.</p>
+        <Image className="w-full bg-white p-4" src="/proximity/proximity-sectors.jpg" alt="Proximity message array" width={691} height={471} />
+        <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/models.py']} />
       </section>
 
       <section>

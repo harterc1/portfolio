@@ -1,6 +1,5 @@
 import Image from "next/image"
 import CodeSamples from "@/components/CodeSamples"
-import ProjectContainer from "@/components/ProjectContainer"
 import FloatingVideo from "@/components/FloatingVideo"
 import SideBySideSections from "@/components/SideBySideSections"
 import { Metadata } from "next"
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 const Page = () => (
-  <ProjectContainer>
+  <article>
     <header>
       <h1>Stories App</h1>
       <FloatingVideo src="/stories-app/stories-app-trimmed.mp4" />
@@ -136,7 +135,7 @@ const Page = () => (
         ]}
       />
     </section>
-  </ProjectContainer>
+  </article>
 )
 
 export default Page

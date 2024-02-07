@@ -20,7 +20,7 @@ const Page = () => {
         <h1>{ project.title }</h1>
         <FloatingVideo src="/proximity/proximity-demo.mp4" />
         <p>Proximity is a native app for <b>iOS</b> and <b>Android</b> that anonymously connects you with nearby people in real time.  The app continuously monitors GPS location and dynamically opens chat streams with everyone within a 100 meter radius. All chat messages are then combined into a single familiar user interface.</p>
-        <p>Proximity is a personal project that I've built in my free time. It is not released to Google Play or the App Store (yet). However, It has gone through live testing with friends and family.</p>
+        <p>Proximity is a personal project that I&apos;ve built in my free time. It is not released to Google Play or the App Store (yet). However, It has gone through live testing with friends and family.</p>
       </header>
       <div className="clear-both" />
 
@@ -57,7 +57,7 @@ const Page = () => {
 
       <section>
         <h2>Is it a feed or a chat?</h2>
-        <p>It's both. The single chat interface looks simple, but it has a lot going on. Not only is it aggregating real-time chat messages from all nearby users (and any messages you send yourself), but it also acts as an infinitely scrolling feed, showing the chat history prioritized by distance from your location.</p>
+        <p>It&apos;s both. The single chat interface looks simple, but it has a lot going on. Not only is it aggregating real-time chat messages from all nearby users (and any messages you send yourself), but it also acts as an infinitely scrolling feed, showing the chat history prioritized by distance from your location.</p>
         <p>The feed initializes as an array of messages, the first page of chat history. Incoming chat messages come in through a <a href="https://socket.io/" target="_blank">Socket.IO</a> server and are instantly inserted at the beginning of the array. Outgoing chat messages are also sent through the <a href="https://socket.io/" target="_blank">Socket.IO</a> server, but to provide instant feedback to the user, a client-side message object is constructed and inserted at the beginning of the array. Additionally, if the user attempts to scroll to the end of the chat, new pages of chat history are incrementally fetched from the backend using <a href="https://www.apollographql.com/docs/react/" target="_blank">Apollo GraphQL Client</a> and pushed to the end of the message array.</p>
         
         <Image className="sm:w-1/2 bg-white p-4" src="/proximity/proximity-message-array.jpg" alt="Proximity message array" width={356} height={451} />
@@ -68,9 +68,9 @@ const Page = () => {
       </section>
 
       <section>
-        <h2>Ordering Messages By Distance</h2>
-        <p>The chat is primarily ordered by distance, but the user's exact distance from each message is not used. Message's are placed into buckets called <b>sectors</b>, each <b>sector</b> incrementally being an additional 100 meters from the user. This allows for individual messages in each <b>sector</b> to be ordered by their send time and still read like a conversation in the chat history. If ordering was strictly based off of distance, the conversation would most likely appear very random and scrambled.</p>
-        <p>Refer to the diagram below. Without the concept of <b>sectors</b>, <b>User B</b>'s message would appear before <b>User A</b>'s message and wouldn't make sense.</p>
+        <h2>Ordering By Distance</h2>
+        <p>The chat is primarily ordered by distance, but the user&apos;s exact distance from each message is not used. Message&apos;s are placed into buckets called <b>sectors</b>, each <b>sector</b> incrementally being an additional 100 meters from the user. This allows for individual messages in each <b>sector</b> to be ordered by their send time and still read like a conversation in the chat history. If ordering was strictly based off of distance, the conversation would most likely appear very random and scrambled.</p>
+        <p>Refer to the diagram below. Without the concept of <b>sectors</b>, <b>User B</b>&apos;s message would appear before <b>User A</b>&apos;s message and wouldn&apos;t make sense.</p>
         <Image className="w-full bg-white p-4" src="/proximity/proximity-sectors.jpg" alt="Proximity message array" width={691} height={471} />
         <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/models.py']} />
       </section>
@@ -78,7 +78,7 @@ const Page = () => {
       <section>
         <h2>Media Viewer</h2>
         <FloatingVideo src="/proximity/proximity-media-viewer.mp4" />
-        <p>Proximity has a custom modal that implements simultaneous pinch and drag gestures to allow the user to zoom in and out on it's content.  The user can also swipe vertically in either direction to dismiss the modal.</p>
+        <p>Proximity has a custom modal that implements simultaneous pinch and drag gestures to allow the user to zoom in and out on it&apos;s content.  The user can also swipe vertically in either direction to dismiss the modal.</p>
         <p>This <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/Viewer.js" target="_blank"><code>Viewer</code></a> component is implemented using <a href="https://docs.swmansion.com/react-native-reanimated/" target="_blank">React Native Reanimated</a>.</p>
         <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/Viewer.js']} />
       </section>

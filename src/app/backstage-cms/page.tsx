@@ -3,18 +3,22 @@ import CodeSamples from "@/components/CodeSamples"
 import SideBySideSections from "@/components/SideBySideSections"
 import buildMetaTitle from "@/utils/buildMetaTitle"
 import { Metadata } from "next"
+import getProject from "@/utils/getProject"
+
+const project = getProject('backstage-cms')
 
 export const metadata: Metadata = {
-  title: buildMetaTitle('Backstage CMS')
+  title: buildMetaTitle(project.title)
 }
 
 const Page = () => (
   <article>
     <header>
       <h1>Backstage CMS</h1>
-      <Image src="/backstage-cms/hero-2.png" alt="Backstage CMS edit page example" width={1280} height={864} />
+      <div className="text-xs text-neutral-400 italic my-2">{`${project.years[0]} - ${project.years[1]}`}</div>
       <p>The Backstage CMS project was a ground-up rebuild of VICE&apos;s headless content management system, migrating the frontend from <a href="https://vuejs.org/" target="_blank">Vue.js</a> to <a href="https://nextjs.org/" target="_blank">Next.js</a> while also migrating it&apos;s backend integration from a legacy REST API to a new GraphQL API.</p>
       <p>I was the engineering manager, acting lead and acting project manager. I also hired two engineers to dedicate to this project.</p>
+      <Image src="/backstage-cms/hero-2.png" alt="Backstage CMS edit page example" width={1280} height={864} />
     </header>
 
     <SideBySideSections
@@ -50,9 +54,11 @@ const Page = () => (
       <h2>Auto-save</h2>
       <p>Backstage CMS auto-saves the user&apos;s work. Every time a user pauses for more than a couple seconds, their work will automatically save to the server.</p>
       <p>View the video below to observe a user editing an article. Notice how the buttons in the upper-right disable briefly while auto-save is running. The user is also never interrupted while saving. At the end of the video, the article is finally scheduled to go live.</p>
-      <video controls className="w-full py-2">
+      {/* <video controls className="w-full py-2">
         <source src="/backstage-cms/select-auto-save-schedule.mp4" />
-      </video>
+      </video> */}
+
+      <iframe className="aspect-video w-full" src="https://www.youtube-nocookie.com/embed/_FnAwK93ExE?si=QcqnFndSaDuzvgiI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
       <h3>The Challenge</h3>
       <p>Early in the project, <a href="https://final-form.org/react" target="_blank">React Final Form</a> was chosen to handle our form state management, primarily for it&apos;s <a href="https://redux.js.org/" target="_blank">Redux</a>-inspired performance tuning capability. While React Final Form provides some ways to implement auto-save (i.e. <a href="https://final-form.org/docs/react-final-form/types/FormProps#keepdirtyonreinitialize" target="_blank"><code>keepDirtyOnReinitialize</code></a>), it doesn&apos;t handle re-hydrating the form with data from the server while also not interrupting the user.</p>
@@ -70,9 +76,9 @@ const Page = () => (
       <h3>Data Flow / Lifecycle</h3>
       <p>To further illustrate the impact this auto-save design has on how data flows through the app, observe the following sequence diagrams that depict the data flow design proposed by React Final Form vs <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/backstage-cms/VMForm.tsx" target="_blank"><code>VMForm</code></a>.</p>
       <h4>React Final Form (Before)</h4>
-      <Image className="py-2" src="/backstage-cms/data-flow-before.png" alt="Backstage CMS data flow before" width={640} height={461} />
+      <Image className="my-4" src="/backstage-cms/data-flow-before.png" alt="Backstage CMS data flow before" width={640} height={461} />
       <h4>VMForm (After)</h4>
-      <Image className="py-2" src="/backstage-cms/data-flow-after.png" alt="Backstage CMS data flow after" width={640} height={601} />
+      <Image className="my-4" src="/backstage-cms/data-flow-after.png" alt="Backstage CMS data flow after" width={640} height={601} />
     </section>
 
     <section>

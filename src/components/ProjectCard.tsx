@@ -15,9 +15,9 @@ const ProjectCard = ({
   tags: string[],
   years: number[],
 }) => (
-  <Link className="!opacity-100 bg-neutral-800 rounded-xl pt-6 pb-8 px-8" href={href}>
+  <Link className="hover:!opacity-100 mt-6 mb-8 pt-4 border-t-4 border-neutral-800 hover:border-neutral-600 transition-colors" href={href}>
     <article>
-      <h2 className="inline text-3xl uppercase font-extrabold mr-2">
+      <h2 className="sm:inline text-3xl uppercase font-extrabold mb-0 mr-2">
         { title }
       </h2>
       <span className="text-xs text-neutral-400 italic my-2">{`${years[0]} - ${years[1]}`}</span>

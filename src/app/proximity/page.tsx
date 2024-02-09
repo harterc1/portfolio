@@ -1,6 +1,7 @@
 import CodeSamples from "@/components/CodeSamples"
 import FloatingVideo from "@/components/FloatingVideo"
 import SideBySideSections from "@/components/SideBySideSections"
+import VerticalVideo from "@/components/VerticalVideo"
 import buildMetaTitle from "@/utils/buildMetaTitle"
 import getProject from "@/utils/getProject"
 import { Metadata } from "next"
@@ -16,9 +17,11 @@ const Page = () => (
   <article>
     <header>
       <h1>{ project.title }</h1>
-      <FloatingVideo src="/proximity/proximity-demo.mp4" />
+      <div className="text-xs text-neutral-400 italic my-2">{`${project.years[0]} - ${project.years[1]}`}</div>
+      {/* <FloatingVideo src="/proximity/proximity-demo.mp4" /> */}
       <p>Proximity is a native app for <b>iOS</b> and <b>Android</b> that anonymously connects you with nearby people in real time.  The app continuously monitors GPS location and dynamically opens chat streams with everyone within a 100 meter radius. All chat messages are then combined into a single familiar user interface.</p>
       <p>Proximity is a personal project that I&apos;ve built in my free time. It is not released to Google Play or the App Store (yet). However, It has gone through live testing with friends and family.</p>
+      <VerticalVideo src="/proximity/proximity-demo.mp4" />
     </header>
     <div className="clear-both" />
 
@@ -75,8 +78,9 @@ const Page = () => (
 
     <section>
       <h2>Media Viewer</h2>
-      <FloatingVideo src="/proximity/proximity-media-viewer.mp4" />
+      {/* <FloatingVideo src="/proximity/proximity-media-viewer.mp4" /> */}
       <p>Proximity has a custom modal that implements simultaneous pinch and drag gestures to allow the user to zoom in and out on it&apos;s content.  The user can also swipe vertically in either direction to dismiss the modal.</p>
+      <VerticalVideo src="/proximity/proximity-media-viewer.mp4" />
       <p>This <a href="https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/Viewer.js" target="_blank"><code>Viewer</code></a> component is implemented using <a href="https://docs.swmansion.com/react-native-reanimated/" target="_blank">React Native Reanimated</a>.</p>
       <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/proximity/Viewer.js']} />
     </section>

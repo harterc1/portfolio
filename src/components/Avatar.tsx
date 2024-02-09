@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const Avatar = () => (
-  <Image className="w-full h-full" src="/avatar.jpg" alt="Chad Harter" width={256} height={256} />
+  <Image className="w-full h-full" src="/avatar-2.jpg" alt="Chad Harter" width={400} height={400} />
 )
 
 export default Avatar

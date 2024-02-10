@@ -8,16 +8,15 @@ export default function Home() {
       <header className="pb-4">
         <div className="flex gap-8">
           <div className="flex-1 flex-shrink">
-            <span className="text-2xl sm:text-3xl font-bold leading-normal">Hi, I&apos;m Chad.</span>
-            <br />
-            <span className="text-sm sm:text-base block">{ data.description }</span>
+            <p className="text-2xl sm:text-3xl font-bold mb-1">Hi, I&apos;m Chad.</p>
+            <p className="text-sm sm:text-base mt-0">{ data.description }</p>
             <h1 className="mt-8">
               Welcome to my
               <br />
               <span className="uppercase text-4xl sm:text-5xl font-extrabold">portfolio</span>
             </h1>
           </div>
-          <div className="hidden: xs:block relative w-16 h-16 sm:w-40 sm:h-40 rounded-full overflow-hidden">
+          <div className="hidden xs:block relative w-16 h-16 sm:w-40 sm:h-40 rounded-full overflow-hidden">
             <Avatar />
           </div>
         </div>

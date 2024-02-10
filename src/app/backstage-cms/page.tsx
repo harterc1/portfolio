@@ -56,7 +56,7 @@ const Page = () => (
       <p>Backstage CMS auto-saves the user&apos;s work. Every time a user pauses for more than a couple seconds, their work will automatically save to the server.</p>
       <p>View the video below to observe a user editing an article. Notice how the buttons in the upper-right disable briefly while auto-save is running. The user is also never interrupted while saving. At the end of the video, the article is finally scheduled to go live.</p>
 
-      <iframe className="aspect-video w-full" src="https://www.youtube-nocookie.com/embed/_FnAwK93ExE?si=QcqnFndSaDuzvgiI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+      <iframe className="aspect-video w-full my-6" src="https://www.youtube-nocookie.com/embed/_FnAwK93ExE?si=QcqnFndSaDuzvgiI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
       <h3>The Challenge</h3>
       <p>Early in the project, <a href="https://final-form.org/react" target="_blank">React Final Form</a> was chosen to handle our form state management, primarily for it&apos;s <a href="https://redux.js.org/" target="_blank">Redux</a>-inspired performance tuning capability. While React Final Form provides some ways to implement auto-save (i.e. <a href="https://final-form.org/docs/react-final-form/types/FormProps#keepdirtyonreinitialize" target="_blank"><code>keepDirtyOnReinitialize</code></a>), it doesn&apos;t handle re-hydrating the form with data from the server while also not interrupting the user.</p>

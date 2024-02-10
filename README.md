@@ -2,7 +2,7 @@
 
 See the live site at [chadharter.dev](chadharter.dev)
 
-A [Next.js](https://nextjs.org/) site demonstrating recent professional and personal projects.
+A [Next.js](https://nextjs.org/) site demonstrating my most recent professional and personal projects.
 
 ## Getting Started
 

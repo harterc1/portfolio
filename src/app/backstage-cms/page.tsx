@@ -4,6 +4,7 @@ import SideBySideSections from "@/components/SideBySideSections"
 import buildMetaTitle from "@/utils/buildMetaTitle"
 import { Metadata } from "next"
 import getProject from "@/utils/getProject"
+import Years from "@/components/Years"
 
 const project = getProject('backstage-cms')
 
@@ -15,7 +16,7 @@ const Page = () => (
   <article>
     <header>
       <h1>Backstage CMS</h1>
-      <div className="text-xs text-neutral-400 italic my-2">{`${project.years[0]} - ${project.years[1]}`}</div>
+      <Years years={project.years} />
       <p>The Backstage CMS project was a ground-up rebuild of VICE&apos;s headless content management system, migrating the frontend from <a href="https://vuejs.org/" target="_blank">Vue.js</a> to <a href="https://nextjs.org/" target="_blank">Next.js</a> while also migrating it&apos;s backend integration from a legacy REST API to a new GraphQL API.</p>
       <p>I was the engineering manager, acting lead and acting project manager. I also hired two engineers to dedicate to this project.</p>
       <Image src="/backstage-cms/hero-2.png" alt="Backstage CMS edit page example" width={1280} height={864} />
@@ -54,9 +55,6 @@ const Page = () => (
       <h2>Auto-save</h2>
       <p>Backstage CMS auto-saves the user&apos;s work. Every time a user pauses for more than a couple seconds, their work will automatically save to the server.</p>
       <p>View the video below to observe a user editing an article. Notice how the buttons in the upper-right disable briefly while auto-save is running. The user is also never interrupted while saving. At the end of the video, the article is finally scheduled to go live.</p>
-      {/* <video controls className="w-full py-2">
-        <source src="/backstage-cms/select-auto-save-schedule.mp4" />
-      </video> */}
 
       <iframe className="aspect-video w-full" src="https://www.youtube-nocookie.com/embed/_FnAwK93ExE?si=QcqnFndSaDuzvgiI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 

@@ -17,13 +17,13 @@ export default function Home() {
               <span className="uppercase text-4xl sm:text-5xl font-extrabold">portfolio</span>
             </h1>
           </div>
-          <div className="hidden xs:block relative w-24 h-24 sm:w-40 sm:h-40 rounded-full overflow-hidden">
+          <div className="hidden: xs:block relative w-16 h-16 sm:w-40 sm:h-40 rounded-full overflow-hidden">
             <Avatar />
           </div>
         </div>
       </header>
 
-      <div className="grid sm:grid-cols-1 gap-6 mt-6">
+      <div className="grid sm:grid-cols-1 sm:gap-2 mt-0 sm:mt-4">
         {data.projects.map(project => (
           <ProjectCard
             key={project.slug}

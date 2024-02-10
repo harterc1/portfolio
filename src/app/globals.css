@@ -57,7 +57,7 @@ article {
   }
 
   h2 {
-    @apply text-2xl font-bold my-2
+    @apply text-2xl md:text-3xl font-bold my-2
   }
 
   h3 {

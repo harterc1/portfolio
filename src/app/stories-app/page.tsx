@@ -1,11 +1,11 @@
 import Image from "next/image"
 import CodeSamples from "@/components/CodeSamples"
-import FloatingVideo from "@/components/FloatingVideo"
 import SideBySideSections from "@/components/SideBySideSections"
 import { Metadata } from "next"
 import buildMetaTitle from "@/utils/buildMetaTitle"
 import VerticalVideo from "@/components/VerticalVideo"
 import getProject from "@/utils/getProject"
+import Years from "@/components/Years"
 
 const project = getProject('stories-app')
 
@@ -17,8 +17,7 @@ const Page = () => (
   <article>
     <header>
       <h1>Stories App</h1>
-      <div className="text-xs text-neutral-400 italic my-2">{`${project.years[0]} - ${project.years[1]}`}</div>
-      {/* <FloatingVideo src="/stories-app/stories-app-trimmed.mp4" /> */}
+      <Years years={project.years} />
       <p>Stories App enables journalists to streamline the creation process for video-based social media content.</p>
       <p>The app provides branded templates with video editing capabilities. It accomplishes this with zero buffering and offline support. All video projects are also auto-saved and accessible for additional editing at a later time.</p>
       <p>I was the engineering manager and lead on the project.</p>
@@ -58,11 +57,8 @@ const Page = () => (
 
     <section>
       <h2>The Camera</h2>
-     
-      {/* <FloatingVideo src="/stories-app/camera-scaled.mp4" /> */}
-        
       <p>The camera uses <a href="https://developer.apple.com/documentation/swiftui/uiviewrepresentable" target="_blank"><code>UIViewRepresentable</code></a> to construct a custom SwiftUI view that ties an <a href="https://developer.apple.com/documentation/avfoundation/avcapturesession" target="_blank"><code>AVCaptureSession</code></a> to an <a href="https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer" target="_blank"><code>AVCaptureVideoPreviewLayer</code></a> to present the camera feed.</p>
-      
+
       <VerticalVideo src="/stories-app/camera-scaled.mp4" />
 
       <CodeSamples hrefs={['https://github.com/harterc1/portfolio/blob/master/code-samples/stories-app/CameraPreviewView.swift']} />

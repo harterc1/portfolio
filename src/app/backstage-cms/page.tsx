@@ -18,7 +18,7 @@ const Page = () => (
       <h1>Backstage CMS</h1>
       <Years years={project.years} />
       <p>The Backstage CMS project was a ground-up rebuild of VICE&apos;s headless content management system, migrating the frontend from <a href="https://vuejs.org/" target="_blank">Vue.js</a> to <a href="https://nextjs.org/" target="_blank">Next.js</a> while also migrating it&apos;s backend integration from a legacy REST API to a new GraphQL API.</p>
-      <p>I was the engineering manager, acting lead and acting project manager. I also hired two engineers to dedicate to this project.</p>
+      <p>I was the engineering manager, lead and project manager. I also hired two engineers to dedicate to this project.</p>
       <Image src="/backstage-cms/hero-2.png" alt="Backstage CMS edit page example" width={1280} height={864} />
     </header>
 

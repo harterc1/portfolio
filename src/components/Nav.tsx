@@ -1,5 +1,6 @@
 'use client'
 
+import { FilePdf } from "@emotion-icons/boxicons-solid"
 import { Github, LinkedinSquare } from "@emotion-icons/boxicons-logos"
 import Link from "next/link"
 import Avatar from "./Avatar"
@@ -13,6 +14,9 @@ const Nav = () => (
         </Link>
       </div>
       
+      <Link href="/Chad_Harter_Resume_2024-02-10.pdf" target="_blank" className="p-1 my-1 inline-block">
+        <FilePdf size="2rem" title="Chad Harter's Resume" />
+      </Link>
       <Link href="http://www.github.com/harterc1/portfolio" target="_blank" className="p-1 my-1 inline-block">
         <Github size="2rem" title="Chad Harter's Github" />
       </Link>

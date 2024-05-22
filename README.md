@@ -1,6 +1,6 @@
 # Portfolio
 
-See the live site at [chadharter.dev](chadharter.dev)
+See the live site at [www.chadharter.dev](https://www.chadharter.dev)
 
 A [Next.js](https://nextjs.org/) site demonstrating my most recent professional and personal projects.
 
